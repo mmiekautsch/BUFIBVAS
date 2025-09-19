@@ -1,0 +1,101 @@
+/* General Style */
+.customButton {
+    background-color: #3498db;
+    color: white;
+    margin: 2px;
+    border: #2c3e50 1px solid;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.customButton:hover {
+    background-color: #2980b9;
+}
+
+.customButtonDisabled {
+    background-color: #bdc3c7;
+    color: white;
+    margin: 2px;
+    border: #bdc3c7 1px solid;
+    font-size: 16px;
+    cursor: not-allowed;
+}
+
+/* Header Style */
+.header-grid {
+    background-color: #2c3e50;
+    color: white;
+    padding: 1em;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #1a252f;
+    width: 100%;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.header-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-left: 10px;
+    margin-right: 20px;
+    vertical-align: middle;
+}
+
+.header-link {
+    margin: 0 10px;
+    color: white;
+    text-decoration: none;
+}
+
+.header-link:hover {
+    text-decoration: underline;
+    color: #ecf0f1;
+}
+
+.header-nav {
+    text-align: center;
+}
+
+/* Footer Style */
+.footer-panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 10px 0;
+    background-color: #2c3e50;
+    margin-top: 20px;
+}
+
+.text-footer {
+    text-align: center;
+    color: white;
+    font-size: 14px;
+}
+
+
+/* Home Page */
+.home-buttons-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 60%;
+    width: 33%;
+}
+
+/* Booking Page */
+.booking-buttons-container {
+    display: flex;
+    flex-direction: column;
+    height: 60%;
+    margin-right: 10px;
+    position: sticky;
+    top: 0;
+    vertical-align: top;
+}
+
+.flight-details-table {
+    margin-bottom: 5px;
+}
+
