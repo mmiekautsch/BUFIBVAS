@@ -10,9 +10,10 @@
     <ui:define name="content">
         <h:form>
             <h:panelGroup styleClass="home-buttons-container">
-                <h:commandButton value="Buslinie erstellen" action="booking" styleClass="customButton" />
-                <h:commandButton value="Haltestelle erstellen" action="flightcreator" styleClass="customButton" />
-                <h:commandButton value="Buslinie bearbeiten" action="flightcreator" styleClass="customButton" />
+                <h:commandButton value="Buslinie erstellen" action="buslinecreator" styleClass="customButton" />
+                <h:commandButton value="Haltestelle erstellen" action="busstopcreator" styleClass="customButton" />
+                <h:commandButton value="Buslinie bearbeiten" action="buslineeditor" styleClass="customButton" />
+                <h:commandButton value="Fahrt planen" action="planner" styleClass="customButton" />
                 <h:panelGroup rendered="#{not user.loggedIn}">
                     <h:commandButton value="Login" action="#{user.login}" styleClass="customButton" />
                 </h:panelGroup>

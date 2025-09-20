@@ -10,7 +10,7 @@ public class BusLineCreatorController implements Serializable {
     private BusLineList busLineList;
     private String linenum;
     private String workinghrs;
-    private boolean firstLoad = false;
+    private boolean firstLoad = true;
 
     public void createBusLine() {
         BusLine line = new BusLine(linenum, workinghrs);
@@ -33,5 +33,8 @@ public class BusLineCreatorController implements Serializable {
     }
     public void setWorkinghrs(String workinghrs) {
         this.workinghrs = workinghrs;
+    }
+    public boolean getFirstLoad() {
+        return firstLoad;
     }
 }

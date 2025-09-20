@@ -17,7 +17,7 @@
                 <h:outputLabel for="linenumber" value="Liniennummer: "/>
                 <h:inputText value="#{busLineCreatorController.linenum}" required="true" id="linenumber"/>
 
-                <h:outputLabel for="workinghrs" value="Standort: "/>
+                <h:outputLabel for="workinghrs" value="Betriebszeit: "/>
                 <h:inputText value="#{busLineCreatorController.workinghrs}" required="true" id="workinghrs"/>
             </h:panelGrid>
             <h:commandButton value="Linie erstellen" action="#{busLineCreatorController.createBusLine()}" styleClass="customButton"/>
