@@ -15,8 +15,13 @@
         <h:form>
             <h:panelGrid columns="2">
                 <h:outputLabel for="linenumber" value="Liniennummer: "/>
-                <h:inputText value="#{flightCreatorController.flightNumber}" required="true" id="linenumber"/>
+                <h:inputText value="#{busLineCreatorController.linenum}" required="true" id="linenumber"/>
+
+                <h:outputLabel for="workinghrs" value="Standort: "/>
+                <h:inputText value="#{busLineCreatorController.workinghrs}" required="true" id="workinghrs"/>
             </h:panelGrid>
+            <h:commandButton value="Linie erstellen" action="#{busLineCreatorController.createBusLine()}" styleClass="customButton"/>
+            <h:outputText value="Linie erfolgreich erstellt!" rendered="#{not busLineCreatorController.firstLoad}" style="margin-top: 10px;"/>
         </h:form>
     </ui:define>
 </ui:composition>
