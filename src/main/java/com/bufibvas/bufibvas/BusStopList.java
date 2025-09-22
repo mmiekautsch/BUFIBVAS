@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 @javax.enterprise.context.ApplicationScoped
 public class BusStopList {
-    ArrayList<BusStop> busStopList;
+    private final ArrayList<BusStop> busStopList;
+
     public BusStopList() {
         busStopList = new ArrayList<>();
         busStopList.add(new BusStop("Hauptbahnhof", "Altstadt"));
@@ -21,5 +22,11 @@ public class BusStopList {
 
     public void addBusStop(BusStop busStop) {
         busStopList.add(busStop);
+    }
+    public ArrayList<BusStop> getBusStopList() {
+        return busStopList;
+    }
+    public void removeBusStop(BusStop busStop) {
+        busStopList.remove(busStop);
     }
 }

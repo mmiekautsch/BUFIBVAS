@@ -3,11 +3,11 @@ package com.bufibvas.bufibvas;
 public class BusStop {
     String Name;
     String Location;
-    int driveTimeFromPrevStop;
+    int minsFromPrevStop;
 
     public BusStop(String name, String location) {
         Name = name;
         Location = location;
-        driveTimeFromPrevStop = 0;
+        minsFromPrevStop = 0;
     }
 }

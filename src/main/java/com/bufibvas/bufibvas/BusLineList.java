@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 @javax.enterprise.context.ApplicationScoped
 public class BusLineList {
-    private ArrayList<BusLine> busLineList;
+    private final ArrayList<BusLine> busLineList;
 
     public BusLineList() {
         busLineList = new ArrayList<>();

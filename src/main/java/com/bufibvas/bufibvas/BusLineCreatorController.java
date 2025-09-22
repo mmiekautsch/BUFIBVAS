@@ -15,6 +15,7 @@ public class BusLineCreatorController implements Serializable {
     public void createBusLine() {
         BusLine line = new BusLine(linenum, workinghrs);
         busLineList.addBusLine(line);
+        clear();
     }
     public void clear() {
         linenum = null;

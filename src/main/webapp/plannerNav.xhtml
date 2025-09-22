@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<f:view>
+    <h:form>
+        <h:panelGroup styleClass="booking-buttons-container">
+            <h:commandButton value="Übersicht" action="#{plannerController.setStatus(0)}" styleClass="customButton"/>
+            <h:commandButton value="Fluginfo" action="#{plannerController.setStatus(1)}"
+                             styleClass="#{plannerController.status lt 1 ? 'customButtonDisabled' : 'customButton'}"
+                             disabled="#{plannerController.status lt 1}"/>
+            <h:commandButton value="Passagierdaten" action="#{plannerController.setStatus(2)}"
+                             styleClass="#{plannerController.status lt 2 ? 'customButtonDisabled' : 'customButton'}"
+                             disabled="#{plannerController.status lt 2}"/>
+            <h:commandButton value="Bestätigen" action="#{plannerController.setStatus(3)}"
+                             styleClass="#{plannerController.status lt 3 ? 'customButtonDisabled' : 'customButton'}"
+                             disabled="#{plannerController.status lt 3}"/>
+        </h:panelGroup>
+    </h:form>
+</f:view>
+</html>
