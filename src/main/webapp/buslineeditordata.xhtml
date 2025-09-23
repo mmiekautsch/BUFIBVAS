@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<f:view>
+    <h:form>
+        <h:dataTable value="#{busLineEditorController.selectedLine.stopList}" var="stop">
+            <h:column>
+                <h:graphicImage library="img" value="#{busLineEditorController.mapImgToStop(stop)}" style="padding-top: 10px;"/>
+            </h:column>
+            <h:column>
+                <h:outputText value="#{stop.name}, #{stop.location}"/>
+            </h:column>
+        </h:dataTable>
+        <h:panelGrid columns="4">
+            <h:commandButton value="Hinzufügen" action="#{busLineEditorController.addBusStop()}"/>
+            <h:selectOneMenu value="#{busLineEditorController.selectedStopName}">
+                <f:selectItems value="#{busLineEditorController.busStopList}" var="bstop" itemValue="#{bstop.name}" itemLabel="#{bstop.name}"/>
+            </h:selectOneMenu>
+            <h:outputLabel for="traveltime" value="Fahrzeit vom letzten Stop (Minuten): "/>
+            <h:inputText id="traveltime" value="#{busLineEditorController.travelTimeMinutes}">
+                <f:passThroughAttribute name="type" value="number"/>
+                <f:passThroughAttribute name="min" value="1"/>
+                <f:passThroughAttribute name="max" value="60"/>
+                <f:passThroughAttribute name="step" value="1"/>
+                <f:validateLongRange minimum="1" maximum="60"/>
+            </h:inputText>
+        </h:panelGrid>
+    </h:form>
+</f:view>
+</html>

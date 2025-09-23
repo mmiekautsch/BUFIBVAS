@@ -17,8 +17,20 @@
                 <h:outputLabel for="linenumber" value="Liniennummer: "/>
                 <h:inputText value="#{busLineCreatorController.linenum}" required="true" id="linenumber"/>
 
-                <h:outputLabel for="workinghrs" value="Betriebszeit: "/>
-                <h:inputText value="#{busLineCreatorController.workinghrs}" required="true" id="workinghrs" converter="javax.faces.DateTime"/>
+                <h:panelGrid columns="4">
+                    <h:outputLabel for="workingHrsStart" value="Betriebszeit (HH:mm): von "/>
+                    <h:inputText value="#{busLineCreatorController.workinghrsStart}" required="true" id="workingHrsStart">
+                        <f:convertDateTime type="time" pattern="HH:mm" timeZone="Europe/Berlin"/>
+                    </h:inputText>
+                    <h:outputLabel for="workingHrsEnd" value=" bis "/>
+                    <h:inputText value="#{busLineCreatorController.workinghrsEnd}" required="true" id="workingHrsEnd">
+                        <f:convertDateTime type="time" pattern="HH:mm" timeZone="Europe/Berlin"/>
+                    </h:inputText>
+                </h:panelGrid>
+
+                <h:selectOneMenu value="#{busLineCreatorController.firstStop}">
+                    <f:selectItems value="#{busLineCreatorController.busStopList}" var="bstop" itemValue="#{bstop}" itemLabel="#{bstop.name}"/>
+                </h:selectOneMenu>
             </h:panelGrid>
             <h:commandButton value="Linie erstellen" action="#{busLineCreatorController.createBusLine()}" styleClass="customButton"/>
             <h:outputText value="Linie erfolgreich erstellt!" rendered="#{not busLineCreatorController.firstLoad}" style="margin-top: 10px;"/>

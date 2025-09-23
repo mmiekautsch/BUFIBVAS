@@ -1,18 +1,23 @@
 package com.bufibvas.bufibvas;
 
+import javax.inject.Inject;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 @javax.enterprise.context.ApplicationScoped
 public class BusLineList {
     private final ArrayList<BusLine> busLineList;
 
-    public BusLineList() {
+    public BusLineList() throws ParseException {
         busLineList = new ArrayList<>();
-        busLineList.add(new BusLine("42",  "12:00 - 22:00"));
-        busLineList.add(new BusLine("61", "12:00 - 22:00"));
-        busLineList.add(new BusLine("85", "12:00 - 22:00"));
-        busLineList.add(new BusLine("7", "12:00 - 22:00"));
-        busLineList.add(new BusLine("12", "12:00 - 22:00"));
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+
+        busLineList.add(new BusLine("42", sdf.parse("12:00"), sdf.parse("22:00"), new BusStop("Hauptbahnhof", "Altstadt")));
+        busLineList.add(new BusLine("61", sdf.parse("12:00"), sdf.parse("22:00"), new BusStop("Altmarkt", "Altstadt")));
+        busLineList.add(new BusLine("85", sdf.parse("12:00"), sdf.parse("22:00"), new BusStop("Postplatz", "Altstadt")));
+        busLineList.add(new BusLine("7", sdf.parse("12:00"), sdf.parse("22:00"), new BusStop("Großer Garten", "Südvorstadt")));
+        busLineList.add(new BusLine("12", sdf.parse("12:00"), sdf.parse("22:00"), new BusStop("Zoo", "Südvorstadt")));
     }
     public ArrayList<BusLine> getBusLineList() {
         return busLineList;

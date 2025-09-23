@@ -2,24 +2,32 @@ package com.bufibvas.bufibvas;
 
 import javax.inject.Inject;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
 
 @javax.inject.Named(value = "busLineCreatorController")
 @javax.enterprise.context.RequestScoped
 public class BusLineCreatorController implements Serializable {
     @Inject
     private BusLineList busLineList;
+    @Inject
+    private BusStopList busStopList;
     private String linenum;
-    private String workinghrs;
+    private Date workinghrsStart;
+    private Date workinghrsEnd;
+    private BusStop firstStop;
     private boolean firstLoad = true;
 
     public void createBusLine() {
-        BusLine line = new BusLine(linenum, workinghrs);
+        BusLine line = new BusLine(linenum, workinghrsStart,  workinghrsEnd, firstStop);
         busLineList.addBusLine(line);
         clear();
     }
     public void clear() {
         linenum = null;
-        workinghrs = null;
+        workinghrsStart = null;
+        workinghrsEnd = null;
+        firstStop = null;
         firstLoad = false;
     }
 
@@ -29,13 +37,28 @@ public class BusLineCreatorController implements Serializable {
     public void setLinenum(String linenum) {
         this.linenum = linenum;
     }
-    public String getWorkinghrs() {
-        return workinghrs;
-    }
-    public void setWorkinghrs(String workinghrs) {
-        this.workinghrs = workinghrs;
-    }
     public boolean getFirstLoad() {
         return firstLoad;
+    }
+    public void setWorkinghrsStart(Date workinghrsStart) {
+        this.workinghrsStart = workinghrsStart;
+    }
+    public Date getWorkinghrsStart() {
+        return workinghrsStart;
+    }
+    public void setWorkinghrsEnd(Date workinghrsEnd) {
+        this.workinghrsEnd = workinghrsEnd;
+    }
+    public Date getWorkinghrsEnd() {
+        return workinghrsEnd;
+    }
+    public void setFirstStop(BusStop firstStop) {
+        this.firstStop = firstStop;
+    }
+    public BusStop getFirstStop() {
+        return firstStop;
+    }
+    public ArrayList<BusStop> getBusStopList() {
+        return busStopList.getBusStopList();
     }
 }

@@ -1,13 +1,26 @@
 package com.bufibvas.bufibvas;
 
+import java.util.Objects;
+
 public class BusStop {
-    String Name;
-    String Location;
-    int minsFromPrevStop;
+    private String Name;
+    private String Location;
 
     public BusStop(String name, String location) {
         Name = name;
         Location = location;
-        minsFromPrevStop = 0;
+    }
+
+    public String getName() {
+        return Name;
+    }
+    public String getLocation() {
+        return Location;
+    }
+    public void setName(String name) {
+        Name = name;
+    }
+    public void setLocation(String location) {
+        Location = location;
     }
 }

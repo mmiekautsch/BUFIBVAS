@@ -12,7 +12,13 @@
     </ui:define>
 
     <ui:define name="content">
-        <!--Hier Editor dann hin-->
+
+        <h:panelGroup rendered="#{busLineEditorController.status == 0}">
+            <ui:include src="buslineeditorselect.xhtml"/>
+        </h:panelGroup>
+        <h:panelGroup rendered="#{busLineEditorController.status == 1}">
+            <ui:include src="buslineeditordata.xhtml"/>
+        </h:panelGroup>
     </ui:define>
 </ui:composition>
 </html>

@@ -1,19 +1,24 @@
 package com.bufibvas.bufibvas;
 
-import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Objects;
 
 public class BusLine {
     private final ArrayList<BusStop> StopList;
-    private final ArrayList<LocalTime> Schedule;
+    private final ArrayList<Integer> TravelTimes;
     private String Id;
-    private String workingHours;
+    private Date workinghrsStart;
+    private Date workinghrsEnd;
 
-    public BusLine(String id, String workingHours) {
+    public BusLine(String id, Date workingHoursstart, Date workingHoursend, BusStop start) {
         Id = id;
-        this.workingHours = workingHours;
+        workinghrsStart = workingHoursstart;
+        workinghrsEnd = workingHoursend;
         StopList = new ArrayList<>();
-        Schedule = new ArrayList<>();
+        TravelTimes = new ArrayList<>();
+        StopList.add(start);
+        TravelTimes.add(0);
     }
 
     public String getId() {
@@ -22,18 +27,13 @@ public class BusLine {
     public void setId(String id) {
         Id = id;
     }
-    public String getWorkingHours() {
-        return workingHours;
-    }
-    public void setWorkingHours(String workingHours) {
-        this.workingHours = workingHours;
-    }
 
     public ArrayList<BusStop> getStopList() {
         return StopList;
     }
 
-    public void addSchedule(BusStop busStop) {
+    public void addStop(BusStop busStop, int travelTimeMinutes) {
         StopList.add(busStop);
+        TravelTimes.add(travelTimeMinutes);
     }
 }
