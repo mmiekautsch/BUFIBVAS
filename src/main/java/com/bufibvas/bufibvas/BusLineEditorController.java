@@ -2,7 +2,6 @@ package com.bufibvas.bufibvas;
 
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -44,7 +43,7 @@ public class BusLineEditorController implements Serializable {
     public int getStatus() {
         return status;
     }
-    public String setStatus(int status) throws IOException {
+    public String setStatus(int status) {
         this.status = status;
         this.selectedLine = busLineList.getBusLineList().stream()
                 .filter(bl -> String.valueOf(bl.getId()).equals(selectedId))
@@ -64,18 +63,25 @@ public class BusLineEditorController implements Serializable {
         this.selectedStopName = selectedStopName;
     }
 
-    public String addBusStop() throws IOException {
+    public String addBusStop() {
         selectedStop = busStopList.getBusStopList().stream()
                 .filter(bl -> String.valueOf(bl.getName()).equals(selectedStopName))
                 .findFirst().orElse(null);
-        selectedLine.addStop(selectedStop, travelTimeMinutes);
+
+        // prüfen auf doppelte stopps
+        if (selectedLine.getStopList().stream().anyMatch(s -> selectedStop.getName().equalsIgnoreCase(s.getName()))) {
+            selectedStop = null;
+            FacesContext.getCurrentInstance().getExternalContext().getFlash().put("popupMessage", "Doppelter Stopp – bereits vorhanden.");
+        }
+        else {
+            selectedLine.addStop(selectedStop, travelTimeMinutes);
+        }
         return "buslineeditor?faces-redirect=true";
     }
 
-    public void removeBusStop(BusStop busStop) throws IOException {
-        if (selectedLine == null) return;
-        busStopList.removeBusStop(busStop);
-        FacesContext.getCurrentInstance().getExternalContext().redirect("buslineeditor.xhtml");
+    public String removeBusStop(BusStop busStop) {
+        selectedLine.removeStop(busStop);
+        return "buslineeditor?faces-redirect=true";
     }
 
     public ArrayList<BusLine> getBusLineList() {
@@ -87,5 +93,15 @@ public class BusLineEditorController implements Serializable {
         if (idx == 0) return "resources/img/start.png";
         if (idx == selectedLine.getStopList().size()-1) return "resources/img/end.png";
         return "resources/img/stop.png";
+    }
+
+    public String reset() {
+        selectedId = null;
+        selectedStopName = null;
+        selectedLine = null;
+        selectedStop = null;
+        travelTimeMinutes = 0;
+        status = 0;
+        return "buslineeditor?faces-redirect=true";
     }
 }

@@ -8,16 +8,25 @@
 
 <f:view>
     <h:form>
+        <h:commandButton value="Zurück" action="#{busLineEditorController.reset()}" styleClass="customButton"/>
+    </h:form>
+    <h:form>
+        <h:outputText value="Linie #{busLineEditorController.selectedLine.id}" style="padding-top: 10px;"/>
         <h:dataTable value="#{busLineEditorController.selectedLine.stopList}" var="stop">
             <h:column>
-                <h:graphicImage library="img" value="#{busLineEditorController.mapImgToStop(stop)}" style="padding-top: 10px;"/>
+                <h:graphicImage library="img" value="#{busLineEditorController.mapImgToStop(stop)}" styleClass="image-fit"/>
             </h:column>
             <h:column>
-                <h:outputText value="#{stop.name}, #{stop.location}"/>
+                <h:outputText value="#{stop.name}, #{stop.location}" style="vertical-align: center;"/>
+            </h:column>
+            <h:column>
+                <h:commandButton value="Entfernen" action="#{busLineEditorController.removeBusStop(stop)}" styleClass="customButton" rendered="#{user.manager}"/>
             </h:column>
         </h:dataTable>
+    </h:form>
+    <h:form>
         <h:panelGrid columns="4">
-            <h:commandButton value="Hinzufügen" action="#{busLineEditorController.addBusStop()}"/>
+            <h:commandButton value="Hinzufügen" action="#{busLineEditorController.addBusStop()}" styleClass="customButton"/>
             <h:selectOneMenu value="#{busLineEditorController.selectedStopName}">
                 <f:selectItems value="#{busLineEditorController.busStopList}" var="bstop" itemValue="#{bstop.name}" itemLabel="#{bstop.name}"/>
             </h:selectOneMenu>
@@ -31,5 +40,9 @@
             </h:inputText>
         </h:panelGrid>
     </h:form>
+
+    <h:outputScript rendered="#{not empty flash.popupMessage}">
+        alert("#{flash.popupMessage}");
+    </h:outputScript>
 </f:view>
 </html>

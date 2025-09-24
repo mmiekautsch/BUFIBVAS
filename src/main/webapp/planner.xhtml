@@ -8,13 +8,25 @@
 
 <ui:composition template="template.xhtml">
     <ui:define name="title">
-        <title>BUFIBVAS - Fahrtenplaner</title>
+        <title>BUFIVAS - Fahrtenplaner</title>
     </ui:define>
 
     <ui:define name="content">
         <h:panelGrid columns="2">
-            <ui:include src="plannerNav.xhtml"/>
-
+            <h:panelGroup>
+                <ui:include src="plannerNav.xhtml"/>
+            </h:panelGroup>
+            <h:panelGroup>
+                <h:panelGroup rendered="#{plannerController.status == 0}">
+                    <ui:include src="buslinedisplay.xhtml"/>
+                </h:panelGroup>
+                <h:panelGroup rendered="#{plannerController.status == 1}">
+                    <ui:include src="buslineschedule.xhtml"/>
+                </h:panelGroup>
+                <h:panelGroup rendered="#{plannerController.status == 2}">
+                    <ui:include src="plannerResult.xhtml"/>
+                </h:panelGroup>
+            </h:panelGroup>
         </h:panelGrid>
     </ui:define>
 </ui:composition>

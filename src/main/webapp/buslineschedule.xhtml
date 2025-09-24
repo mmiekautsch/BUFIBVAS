@@ -3,17 +3,34 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
-    <h:outputLabel value="Beitriebszeiten: #{plannerController.selectedLine.workingHours}"/>
+    <h:form>
+        <h:panelGrid columns="2">
+            <h:outputLabel for="startselect" value="Start: "/>
+            <h:selectOneMenu value="#{plannerController.selectedStartIdx}" id="startselect">
+                <f:selectItems value="#{plannerController.busStopList}" var="startstop" itemValue="#{plannerController.idxOfStop(startstop)}" itemLabel="#{startstop.name}"/>
+            </h:selectOneMenu>
+            <h:outputLabel for="endselect" value="Ziel: "/>
+            <h:selectOneMenu value="#{plannerController.selectedEndIdx}" id="endselect">
+                <f:selectItems value="#{plannerController.busStopList}" var="endtstop" itemValue="#{plannerController.idxOfStop(endtstop)}" itemLabel="#{endtstop.name}"/>
+            </h:selectOneMenu>
+            <h:commandButton value="Auswählen" action="#{plannerController.confirmStops()}" styleClass="customButton"/>
+        </h:panelGrid>
+
+    </h:form>
+    <h:outputText value="Beitriebszeiten: #{plannerController.selectedLine.workinghrs}"/>
     <h:dataTable value="#{plannerController.selectedLine.stopList}" var="station">
         <h:column>
-            <h:graphicImage value="src/main/resources/stop.png"/>
+            <h:graphicImage library="img" value="#{plannerController.mapImgToStop(station, true)}" styleClass="image-fit"/>
         </h:column>
         <h:column>
-
+            <h:outputText value="#{station.name}, #{station.location} (#{plannerController.selectedLine.getTravelTimeMinutes(station)}min)"
+                          style="vertical-align: center;"/>
         </h:column>
     </h:dataTable>
+    <h:outputScript rendered="#{not empty flash.popupMessage}">
+        alert("#{flash.popupMessage}");
+    </h:outputScript>
 </f:view>
 </html>

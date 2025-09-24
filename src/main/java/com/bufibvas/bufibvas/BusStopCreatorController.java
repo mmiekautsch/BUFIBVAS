@@ -15,6 +15,7 @@ public class BusStopCreatorController implements Serializable {
     public void createBusStop() {
         BusStop stop = new BusStop(Name, Location);
         busStopList.addBusStop(stop);
+        firstLoad = false;
     }
 
     public void clear() {

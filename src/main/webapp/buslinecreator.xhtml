@@ -8,27 +8,30 @@
 
 <ui:composition template="template.xhtml">
     <ui:define name="title">
-        <title>BUFIBVAS - Busline Creator</title>
+        <title>BUFIVAS - Busline Creator</title>
     </ui:define>
 
     <ui:define name="content">
         <h:form>
             <h:panelGrid columns="2">
                 <h:outputLabel for="linenumber" value="Liniennummer: "/>
-                <h:inputText value="#{busLineCreatorController.linenum}" required="true" id="linenumber"/>
+                <h:inputText value="#{busLineCreatorController.linenum}" required="true" id="linenumber" style="align-content: start"/>
+            </h:panelGrid>
 
-                <h:panelGrid columns="4">
-                    <h:outputLabel for="workingHrsStart" value="Betriebszeit (HH:mm): von "/>
-                    <h:inputText value="#{busLineCreatorController.workinghrsStart}" required="true" id="workingHrsStart">
-                        <f:convertDateTime type="time" pattern="HH:mm" timeZone="Europe/Berlin"/>
-                    </h:inputText>
-                    <h:outputLabel for="workingHrsEnd" value=" bis "/>
-                    <h:inputText value="#{busLineCreatorController.workinghrsEnd}" required="true" id="workingHrsEnd">
-                        <f:convertDateTime type="time" pattern="HH:mm" timeZone="Europe/Berlin"/>
-                    </h:inputText>
-                </h:panelGrid>
+            <h:panelGrid columns="4">
+                <h:outputLabel for="workingHrsStart" value="Betriebszeit (HH:mm): von "/>
+                <h:inputText value="#{busLineCreatorController.workinghrsStart}" required="true" id="workingHrsStart">
+                    <f:convertDateTime type="time" pattern="HH:mm" timeZone="Europe/Berlin"/>
+                </h:inputText>
+                <h:outputLabel for="workingHrsEnd" value=" bis "/>
+                <h:inputText value="#{busLineCreatorController.workinghrsEnd}" required="true" id="workingHrsEnd">
+                    <f:convertDateTime type="time" pattern="HH:mm" timeZone="Europe/Berlin"/>
+                </h:inputText>
+            </h:panelGrid>
 
-                <h:selectOneMenu value="#{busLineCreatorController.firstStop}">
+            <h:panelGrid columns="2">
+                <h:outputLabel for="firstStopSelect" value="Starthaltestelle: "/>
+                <h:selectOneMenu value="#{busLineCreatorController.firstStop}" id="firstStopSelect">
                     <f:selectItems value="#{busLineCreatorController.busStopList}" var="bstop" itemValue="#{bstop}" itemLabel="#{bstop.name}"/>
                 </h:selectOneMenu>
             </h:panelGrid>
