@@ -31,8 +31,8 @@
 
             <h:panelGrid columns="2">
                 <h:outputLabel for="firstStopSelect" value="Starthaltestelle: "/>
-                <h:selectOneMenu value="#{busLineCreatorController.firstStop}" id="firstStopSelect">
-                    <f:selectItems value="#{busLineCreatorController.busStopList}" var="bstop" itemValue="#{bstop}" itemLabel="#{bstop.name}"/>
+                <h:selectOneMenu value="#{busLineCreatorController.firstStopName}" id="firstStopSelect">
+                    <f:selectItems value="#{busLineCreatorController.busStopList}" var="bstop" itemValue="#{bstop.name}" itemLabel="#{bstop.name}"/>
                 </h:selectOneMenu>
             </h:panelGrid>
             <h:commandButton value="Linie erstellen" action="#{busLineCreatorController.createBusLine()}" styleClass="customButton"/>

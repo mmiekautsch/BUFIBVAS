@@ -16,6 +16,7 @@ public class BusLineCreatorController implements Serializable {
     private Date workinghrsStart;
     private Date workinghrsEnd;
     private BusStop firstStop;
+    private String firstStopName;
     private boolean firstLoad = true;
 
     public void createBusLine() {
@@ -52,13 +53,16 @@ public class BusLineCreatorController implements Serializable {
     public Date getWorkinghrsEnd() {
         return workinghrsEnd;
     }
-    public void setFirstStop(BusStop firstStop) {
-        this.firstStop = firstStop;
-    }
-    public BusStop getFirstStop() {
-        return firstStop;
-    }
     public ArrayList<BusStop> getBusStopList() {
         return busStopList.getBusStopList();
+    }
+    public String getFirstStopName() {
+        return firstStopName;
+    }
+    public void setFirstStopName(String firstStopName) {
+        this.firstStopName = firstStopName;
+        this.firstStop = busStopList.getBusStopList().stream()
+                .filter(bs -> String.valueOf(bs.getName()).equals(firstStopName))
+                .findFirst().orElse(null);
     }
 }
