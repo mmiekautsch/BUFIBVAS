@@ -1,7 +1,5 @@
 package com.bufibvas.bufibvas;
 
-import java.util.Objects;
-
 public class BusStop {
     private String Name;
     private String Location;
